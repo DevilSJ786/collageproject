@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#fff"
-        tools:context=".fragments.SplashScreen">
+        tools:context="com.project.currency.scanner.imageclassification.fragments.SplashScreen">
 
         <ImageView
             android:id="@+id/SplashScreenImage"

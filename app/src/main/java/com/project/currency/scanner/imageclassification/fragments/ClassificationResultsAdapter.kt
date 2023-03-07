@@ -1,9 +1,9 @@
-package org.tensorflow.lite.examples.imageclassification.fragments
+package com.project.currency.scanner.imageclassification.fragments
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import org.tensorflow.lite.examples.imageclassification.databinding.ItemClassificationResultBinding
+import com.project.currency.scanner.imageclassification.databinding.ItemClassificationResultBinding
 import org.tensorflow.lite.support.label.Category
 import org.tensorflow.lite.task.vision.classifier.Classifications
 import kotlin.math.min

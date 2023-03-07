@@ -1,4 +1,4 @@
-package org.tensorflow.lite.examples.imageclassification
+package com.project.currency.scanner.imageclassification
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -60,8 +60,8 @@ class ImageClassifierHelper(
         val modelName =
             when (currentModel) {
                 MODEL_CURRENCY -> "model.tflite"
-                MODEL_CURRENCY_QUANTIZED->"model_quant.tflite"
-                MODEL_MOBILENETV1-> "mobilenetv1.tflite"
+                MODEL_CURRENCY_QUANTIZED ->"model_quant.tflite"
+                MODEL_MOBILENETV1 -> "mobilenetv1.tflite"
                 MODEL_EFFICIENTNETV0 -> "efficientnet-lite0.tflite"
                 MODEL_EFFICIENTNETV1 -> "efficientnet-lite1.tflite"
                 MODEL_EFFICIENTNETV2 -> "efficientnet-lite2.tflite"

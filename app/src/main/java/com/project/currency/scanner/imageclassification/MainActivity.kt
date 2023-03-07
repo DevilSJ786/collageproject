@@ -1,9 +1,10 @@
-package org.tensorflow.lite.examples.imageclassification
+package com.project.currency.scanner.imageclassification
 
 import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import org.tensorflow.lite.examples.imageclassification.databinding.ActivityMainBinding
+import com.project.currency.scanner.imageclassification.databinding.ActivityMainBinding
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var activityMainBinding: ActivityMainBinding

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/permissions_fragment"
-        android:name="org.tensorflow.lite.examples.imageclassification.fragments.PermissionsFragment"
+        android:name="com.project.currency.scanner.imageclassification.fragments.PermissionsFragment"
         android:label="PermissionsFragment">
 
         <action
@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/camera_fragment"
-        android:name="org.tensorflow.lite.examples.imageclassification.fragments.CameraFragment"
+        android:name="com.project.currency.scanner.imageclassification.fragments.CameraFragment"
         android:label="CameraFragment">
 
         <action
@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/splashScreen"
-        android:name="org.tensorflow.lite.examples.imageclassification.fragments.SplashScreen"
+        android:name="com.project.currency.scanner.imageclassification.fragments.SplashScreen"
         android:label="fragment_flash_screen"
         tools:layout="@layout/fragment_flash_screen" >
 
@@ -41,7 +41,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeScreen"
-        android:name="org.tensorflow.lite.examples.imageclassification.fragments.HomeScreen"
+        android:name="com.project.currency.scanner.imageclassification.fragments.HomeScreen"
         android:label="fragment_home_screen"
         tools:layout="@layout/fragment_home_screen" >
         <action

@@ -1,16 +1,19 @@
-package org.tensorflow.lite.examples.imageclassification.fragments
+package com.project.currency.scanner.imageclassification.fragments
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import org.tensorflow.lite.examples.imageclassification.databinding.FragmentHomeScreenBinding
+import com.project.currency.scanner.imageclassification.databinding.FragmentFlashScreenBinding
 
-class HomeScreen : Fragment() {
-    private var _binding: FragmentHomeScreenBinding? = null
+
+class SplashScreen : Fragment() {
+    private var _binding: FragmentFlashScreenBinding? = null
     private val binding get() = _binding!!
     private lateinit var navController: NavController
 
@@ -19,15 +22,16 @@ class HomeScreen : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentHomeScreenBinding.inflate(inflater, container, false)
+        _binding = FragmentFlashScreenBinding.inflate(inflater, container, false)
+        navController = findNavController()
+        Handler(Looper.getMainLooper()).postDelayed({
+            navController.navigate(SplashScreenDirections.actionSplashScreenToHomeScreen())
+        }, 3000)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        navController=findNavController()
-        binding.openCamera.setOnClickListener {
-            navController.navigate(HomeScreenDirections.actionHomeScreenToPermissionsFragment())
-        }
+
     }
 }
