@@ -21,7 +21,7 @@ class SplashScreen : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentFlashScreenBinding.inflate(inflater, container, false)
         navController = findNavController()
         Handler(Looper.getMainLooper()).postDelayed({
@@ -30,8 +30,4 @@ class SplashScreen : Fragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-    }
 }

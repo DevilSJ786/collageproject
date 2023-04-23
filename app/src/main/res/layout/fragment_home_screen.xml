@@ -25,13 +25,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_margin="16dp"
-                    android:src="@android:drawable/ic_menu_camera" />
+                    android:src="@android:drawable/ic_menu_camera"
+                    android:contentDescription="@string/open_camera" />
 
-                <ImageButton
-                    android:id="@+id/openStorage"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_margin="16dp"
-                    android:src="@drawable/ic_plus" />
         </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

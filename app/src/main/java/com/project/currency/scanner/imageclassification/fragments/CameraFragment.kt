@@ -3,6 +3,8 @@ package com.project.currency.scanner.imageclassification.fragments
 import android.annotation.SuppressLint
 import android.content.res.Configuration
 import android.graphics.Bitmap
+import android.media.AudioAttributes
+import android.media.SoundPool
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.util.Log
@@ -18,11 +20,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.project.currency.scanner.imageclassification.ImageClassifierHelper
 import com.project.currency.scanner.imageclassification.R
 import com.project.currency.scanner.imageclassification.databinding.FragmentCameraBinding
+import com.project.currency.scanner.imageclassification.model.OnReceivedListener
+import com.project.currency.scanner.imageclassification.model.Result
 import org.tensorflow.lite.task.vision.classifier.Classifications
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
-class CameraFragment : Fragment(), ImageClassifierHelper.ClassifierListener {
+class CameraFragment : Fragment(), ImageClassifierHelper.ClassifierListener, OnReceivedListener {
 
     companion object {
         private const val TAG = "Image Classifier"
@@ -36,6 +40,7 @@ class CameraFragment : Fragment(), ImageClassifierHelper.ClassifierListener {
     private lateinit var bitmapBuffer: Bitmap
     private val classificationResultsAdapter by lazy {
         ClassificationResultsAdapter().apply {
+            this.setOnReceivedListener(this@CameraFragment)
             updateAdapterSize(imageClassifierHelper.maxResults)
         }
     }
@@ -43,6 +48,15 @@ class CameraFragment : Fragment(), ImageClassifierHelper.ClassifierListener {
     private var imageAnalyzer: ImageAnalysis? = null
     private var camera: Camera? = null
     private var cameraProvider: ProcessCameraProvider? = null
+    private var result: Result? = null
+    private lateinit var soundPool: SoundPool
+    private var sound1: Int = 0
+    private var sound2: Int = 0
+    private var sound3: Int = 0
+    private var sound4: Int = 0
+    private var sound5: Int = 0
+    private var sound6: Int = 0
+    private var sound7: Int = 0
 
     /** Blocking camera operations are performed using this executor */
     private lateinit var cameraExecutor: ExecutorService
@@ -71,6 +85,17 @@ class CameraFragment : Fragment(), ImageClassifierHelper.ClassifierListener {
     ): View {
         _fragmentCameraBinding = FragmentCameraBinding.inflate(inflater, container, false)
 
+        val audioAttributes = AudioAttributes.Builder().build()
+        soundPool = SoundPool.Builder()
+            .setMaxStreams(10).setAudioAttributes(audioAttributes)
+            .build()
+        sound1 = soundPool.load(requireContext(), R.raw.sound_10, 1)
+        sound2 = soundPool.load(requireContext(), R.raw.sound_20, 1)
+        sound3 = soundPool.load(requireContext(), R.raw.sound_50, 1)
+        sound4 = soundPool.load(requireContext(), R.raw.sound_100, 1)
+        sound5 = soundPool.load(requireContext(), R.raw.sound_200, 1)
+        sound6 = soundPool.load(requireContext(), R.raw.sound_500, 1)
+        sound7 = soundPool.load(requireContext(), R.raw.sound_2000, 1)
         return fragmentCameraBinding.root
     }
 
@@ -95,6 +120,41 @@ class CameraFragment : Fragment(), ImageClassifierHelper.ClassifierListener {
 
         // Attach listeners to UI control widgets
         initBottomSheetControls()
+
+
+        fragmentCameraBinding.viewFinder.setOnClickListener {
+            Log.d("TAG", "onViewCreated: ")
+            result?.let {
+                if (it.score >= 90f) {
+                    when (it.label) {
+                        "0 2000" -> {
+                            soundPool.play(sound7, 1f, 1f, 0, 0, 1f)
+                        }
+                        "1 500" -> {
+                            soundPool.play(sound6, 1f, 1f, 0, 0, 1f)
+                        }
+                        "2 200" -> {
+                            soundPool.play(sound5, 1f, 1f, 0, 0, 1f)
+                        }
+                        "3 100" -> {
+                            soundPool.play(sound4, 1f, 1f, 0, 0, 1f)
+                        }
+                        "4 50" -> {
+                            soundPool.play(sound3, 1f, 1f, 0, 0, 1f)
+                        }
+                        "5 20" -> {
+                            soundPool.play(sound2, 1f, 1f, 0, 0, 1f)
+                        }
+                        "6 10" -> {
+                            soundPool.play(sound1, 1f, 1f, 0, 0, 1f)
+                        }
+                    }
+                    Log.d("TAG", "onViewCreated: play ${it.label}")
+
+                }
+            }
+
+        }
     }
 
     // Initialize CameraX, and prepare to bind the camera use cases
@@ -281,7 +341,7 @@ class CameraFragment : Fragment(), ImageClassifierHelper.ClassifierListener {
         }
     }
 
-    private fun getScreenOrientation() : Int {
+    private fun getScreenOrientation(): Int {
         val outMetrics = DisplayMetrics()
 
         val display: Display?
@@ -327,5 +387,9 @@ class CameraFragment : Fragment(), ImageClassifierHelper.ClassifierListener {
             fragmentCameraBinding.bottomSheetLayout.inferenceTimeVal.text =
                 String.format("%d ms", inferenceTime)
         }
+    }
+
+    override fun onResult(result: Result) {
+        this.result = result
     }
 }
