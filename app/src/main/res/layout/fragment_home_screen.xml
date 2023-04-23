@@ -23,9 +23,10 @@
                 <ImageButton
                     android:id="@+id/openCamera"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/ic_launcher_background"
                     android:layout_margin="16dp"
-                    android:src="@android:drawable/ic_menu_camera"
+                    android:src="@drawable/baseline_camera_enhance_24"
                     android:contentDescription="@string/open_camera" />
 
         </LinearLayout>
