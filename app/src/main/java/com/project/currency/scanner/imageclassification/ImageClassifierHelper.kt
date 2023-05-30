@@ -60,7 +60,7 @@ class ImageClassifierHelper(
         val modelName =
             when (currentModel) {
                 MODEL_CURRENCY -> "model.tflite"
-                MODEL_CURRENCY_QUANTIZED ->"model_quant.tflite"
+                MODEL_CURRENCY_QUANTIZED ->"model_unquant.tflite"
                 MODEL_MOBILENETV1 -> "mobilenetv1.tflite"
                 MODEL_EFFICIENTNETV0 -> "efficientnet-lite0.tflite"
                 MODEL_EFFICIENTNETV1 -> "efficientnet-lite1.tflite"

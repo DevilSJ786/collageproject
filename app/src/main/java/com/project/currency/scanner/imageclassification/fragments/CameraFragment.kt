@@ -95,7 +95,6 @@ class CameraFragment : Fragment(), ImageClassifierHelper.ClassifierListener, OnR
         sound4 = soundPool.load(requireContext(), R.raw.sound_100, 1)
         sound5 = soundPool.load(requireContext(), R.raw.sound_200, 1)
         sound6 = soundPool.load(requireContext(), R.raw.sound_500, 1)
-        sound7 = soundPool.load(requireContext(), R.raw.sound_2000, 1)
         return fragmentCameraBinding.root
     }
 
@@ -125,27 +124,26 @@ class CameraFragment : Fragment(), ImageClassifierHelper.ClassifierListener, OnR
         fragmentCameraBinding.viewFinder.setOnClickListener {
             Log.d("TAG", "onViewCreated: ")
             result?.let {
+                Log.d("TAG", "onViewCreated:${it.label}\n ${it.label.length} ")
                 if (it.score >= 90f) {
                     when (it.label) {
-                        "0 2000" -> {
-                            soundPool.play(sound7, 1f, 1f, 0, 0, 1f)
-                        }
-                        "1 500" -> {
+
+                        "500" -> {
                             soundPool.play(sound6, 1f, 1f, 0, 0, 1f)
                         }
-                        "2 200" -> {
+                        "200" -> {
                             soundPool.play(sound5, 1f, 1f, 0, 0, 1f)
                         }
-                        "3 100" -> {
+                        "100" -> {
                             soundPool.play(sound4, 1f, 1f, 0, 0, 1f)
                         }
-                        "4 50" -> {
+                        "50" -> {
                             soundPool.play(sound3, 1f, 1f, 0, 0, 1f)
                         }
-                        "5 20" -> {
+                        "20" -> {
                             soundPool.play(sound2, 1f, 1f, 0, 0, 1f)
                         }
-                        "6 10" -> {
+                        "10" -> {
                             soundPool.play(sound1, 1f, 1f, 0, 0, 1f)
                         }
                     }
